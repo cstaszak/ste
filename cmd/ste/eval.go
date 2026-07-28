@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
+	"io"
 	"os"
 	"path/filepath"
 	"strings"
@@ -121,10 +122,8 @@ func runEval(args []string) int {
 		fmt.Fprintf(os.Stderr, "\nThis command spends money. Add --yes to run it.\n")
 		return exitError
 	}
-	if os.Getenv("ANTHROPIC_API_KEY") == "" {
-		fmt.Fprintf(os.Stderr,
-			"\nNote: ANTHROPIC_API_KEY is not set. The client will try the other\n"+
-				"credential sources, such as a profile from \"ant auth login\".\n\n")
+	if err := checkCredentials(os.Stderr); err != nil {
+		return fail("%v", err)
 	}
 
 	cfg.Progress = func(line string) { fmt.Fprintln(os.Stderr, line) }
@@ -163,6 +162,39 @@ func runEval(args []string) int {
 		}
 	}
 	return exitOK
+}
+
+// nearMisses are names people set when they mean ANTHROPIC_API_KEY. The SDK
+// reads none of them, so every request would fail on authentication.
+var nearMisses = []string{
+	"ANTHROPIC_KEY", "ANTHROPIC_APIKEY", "ANTHROPIC_API_TOKEN",
+	"ANTHROPIC_SECRET_KEY", "CLAUDE_API_KEY", "ANTHROPIC_API_KEY_ID",
+}
+
+// checkCredentials reports a credential the SDK cannot read. It stops the run
+// for a name that is close to the correct one, because that is a typing
+// mistake and every request would fail. It only writes a note when no
+// credential is in the environment, because the SDK has other sources.
+func checkCredentials(w io.Writer) error {
+	if os.Getenv("ANTHROPIC_API_KEY") != "" {
+		return nil
+	}
+	for _, name := range nearMisses {
+		if os.Getenv(name) == "" {
+			continue
+		}
+		return fmt.Errorf("%s is set, but the Anthropic SDK reads ANTHROPIC_API_KEY.\n"+
+			"Every request would fail on authentication. Use:\n"+
+			"  export ANTHROPIC_API_KEY=\"$%s\"", name, name)
+	}
+	// ANTHROPIC_AUTH_TOKEN and a profile from "ant auth login" are both valid,
+	// and this command cannot see the profile, so a note is all it can give.
+	if os.Getenv("ANTHROPIC_AUTH_TOKEN") == "" {
+		fmt.Fprintf(w,
+			"\nNote: ANTHROPIC_API_KEY is not set. The client will try the other\n"+
+				"credential sources, such as a profile from \"ant auth login\".\n\n")
+	}
+	return nil
 }
 
 func listEval() {

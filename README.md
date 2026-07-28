@@ -151,7 +151,8 @@ The four conditions are: no system prompt, a list of banned words, Orwell's six
 rules, and the STE rules. The change from the baseline is the result.
 
 The command needs `ANTHROPIC_API_KEY`, or another credential the Anthropic SDK
-accepts. **It spends money.** The command prints an estimate and stops unless you
+accepts. It stops if you set a name close to that one, such as `ANTHROPIC_KEY`.
+The SDK does not read that name, so every request would fail. **It spends money.** The command prints an estimate and stops unless you
 add `--yes`. Raw outputs go under `results/`, which `.gitignore` excludes.
 
 ## For Claude and other coding agents
