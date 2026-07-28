@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"strings"
 
 	"github.com/cstaszak/ste/internal/lint"
 )
@@ -17,6 +18,10 @@ func runRules(args []string) int {
 	}
 	if err := fset.Parse(args); err != nil {
 		return exitError
+	}
+	if fset.NArg() > 0 {
+		return fail("rules takes no arguments, but found %s: %s",
+			count(fset.NArg(), "argument"), strings.Join(fset.Args(), " "))
 	}
 
 	flavored := lint.DefaultOptions(lint.ModeFlavored)

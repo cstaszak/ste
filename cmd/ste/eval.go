@@ -39,6 +39,35 @@ func runEval(args []string) int {
 	if err := fset.Parse(args); err != nil {
 		return exitError
 	}
+	// eval takes no positional arguments. A list flag given with spaces instead
+	// of commas leaves the extra values here, where they would be dropped
+	// without a word. The Go flag package also stops at the first argument, so
+	// every flag after it is lost too. Report both, and show the command that
+	// works.
+	if fset.NArg() > 0 {
+		var values, lost []string
+		for _, a := range fset.Args() {
+			if strings.HasPrefix(a, "-") {
+				lost = append(lost, a)
+			} else {
+				values = append(values, a)
+			}
+		}
+		fmt.Fprintf(os.Stderr, "ste: eval takes no arguments, but found %s: %s\n",
+			count(fset.NArg(), "argument"), strings.Join(fset.Args(), " "))
+		if len(lost) > 0 {
+			fmt.Fprintf(os.Stderr, "The flags after the first argument were not read: %s\n",
+				strings.Join(lost, " "))
+		}
+		if len(values) > 0 {
+			cmd := "ste eval --models " + strings.Join(append([]string{*models}, values...), ",")
+			if len(lost) > 0 {
+				cmd += " " + strings.Join(lost, " ")
+			}
+			fmt.Fprintf(os.Stderr, "A list flag needs commas and no spaces. Did you mean:\n  %s\n", cmd)
+		}
+		return exitError
+	}
 
 	if *listOnly {
 		listEval()
@@ -75,8 +104,14 @@ func runEval(args []string) int {
 		return fail("nothing to run")
 	}
 
-	fmt.Fprintf(os.Stderr, "Plan: %d models x %d tasks x %d conditions = %d requests\n",
-		len(cfg.Models), len(cfg.Tasks), len(cfg.Conditions), cfg.Calls())
+	fmt.Fprintf(os.Stderr, "Plan: %s x %s x %s = %s\n",
+		count(len(cfg.Models), "model"),
+		count(len(cfg.Tasks), "task"),
+		count(len(cfg.Conditions), "condition"),
+		count(cfg.Calls(), "request"))
+	for _, id := range cfg.Models {
+		fmt.Fprintf(os.Stderr, "  %s\n", id)
+	}
 	fmt.Fprintf(os.Stderr, "Estimated cost: about $%.2f\n", cfg.Estimate())
 
 	if *dryRun {

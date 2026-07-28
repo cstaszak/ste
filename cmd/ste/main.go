@@ -65,6 +65,15 @@ func main() {
 	os.Exit(code)
 }
 
+// count writes a number and its noun, with the plural "s" when the number is
+// not one.
+func count(n int, noun string) string {
+	if n == 1 {
+		return fmt.Sprintf("%d %s", n, noun)
+	}
+	return fmt.Sprintf("%d %ss", n, noun)
+}
+
 func fail(format string, a ...any) int {
 	fmt.Fprintf(os.Stderr, "ste: "+format+"\n", a...)
 	return exitError

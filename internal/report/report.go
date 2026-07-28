@@ -97,8 +97,8 @@ func writeText(w io.Writer, reports []*lint.Report, opt Options) error {
 				fmt.Fprintf(w, "  ... and %d more\n", n)
 			}
 		}
-		fmt.Fprintf(w, "  %d words, %d violations, %.2f per 100 words",
-			r.Words, r.Total, r.Per100W)
+		fmt.Fprintf(w, "  %s, %s, %.2f per 100 words",
+			count(r.Words, "word"), count(r.Total, "violation"), r.Per100W)
 		if opt.HasThreshold {
 			fmt.Fprintf(w, " (limit %.2f)", opt.Threshold)
 		}
@@ -120,8 +120,9 @@ func writeText(w io.Writer, reports []*lint.Report, opt Options) error {
 		if words > 0 {
 			per = float64(total) * 100 / float64(words)
 		}
-		fmt.Fprintf(w, "\ntotal: %d files, %d words, %d violations, %.2f per 100 words\n",
-			len(reports), words, total, per)
+		fmt.Fprintf(w, "\ntotal: %s, %s, %s, %.2f per 100 words\n",
+			count(len(reports), "file"), count(words, "word"),
+			count(total, "violation"), per)
 	}
 	return nil
 }
@@ -175,7 +176,8 @@ func writeAgent(w io.Writer, reports []*lint.Report, opt Options) error {
 		if r.Total == 0 {
 			continue
 		}
-		fmt.Fprintf(w, "%s: %d violations, %.2f per 100 words\n", r.Path, r.Total, r.Per100W)
+		fmt.Fprintf(w, "%s: %s, %.2f per 100 words\n",
+			r.Path, count(r.Total, "violation"), r.Per100W)
 		shown := r.Findings
 		if opt.MaxFindings > 0 && len(shown) > opt.MaxFindings {
 			shown = shown[:opt.MaxFindings]
@@ -192,6 +194,15 @@ func writeAgent(w io.Writer, reports []*lint.Report, opt Options) error {
 		}
 	}
 	return nil
+}
+
+// count writes a number and its noun, with the plural "s" when the number is
+// not one.
+func count(n int, noun string) string {
+	if n == 1 {
+		return fmt.Sprintf("%d %s", n, noun)
+	}
+	return fmt.Sprintf("%d %ss", n, noun)
 }
 
 func ruleBreakdown(r *lint.Report) string {
