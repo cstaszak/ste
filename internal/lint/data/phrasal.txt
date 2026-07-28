@@ -1,0 +1,19 @@
+# Phrasal verbs. STE uses one plain verb instead.
+# Format: phrase<TAB>replacement.
+
+spin up	start
+spun up	started
+spin down	stop
+reach out	contact
+reaching out	contacting
+dive into	examine
+dives into	examines
+diving into	examining
+kick off	start
+kicks off	starts
+roll out	release
+rolls out	releases
+tear down	remove
+ramp up	increase
+circle back	return to
+drill down	examine

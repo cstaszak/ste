@@ -1,0 +1,29 @@
+# Marketing adjectives and verbs. STE has no place for them in technical text.
+# Format: phrase<TAB>replacement.
+
+seamless	delete, or state what it does
+seamlessly	delete, or state what it does
+robust	delete, or give the limit it holds to
+powerful	delete, or give the measurement
+cutting-edge	delete
+effortless	delete
+effortlessly	delete
+world-class	delete
+next-generation	delete
+revolutionary	delete
+blazing	delete, or give the speed
+lightning-fast	delete, or give the speed
+elegant	delete
+delightful	delete
+turnkey	delete
+best-in-class	delete
+state-of-the-art	delete
+game-changing	delete
+first-class	delete
+battle-tested	delete, or give the usage record
+enterprise-grade	delete
+supercharge	improve
+unlock	give access to
+unleash	start
+empower	let
+empowers	lets

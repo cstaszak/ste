@@ -1,0 +1,11 @@
+# Hedges and throat-clearing. Delete the phrase and state the fact.
+# Format: phrase<TAB>replacement.
+
+it is important to note	delete the phrase
+it should be noted	delete the phrase
+it is worth noting	delete the phrase
+please note that	delete the phrase
+as mentioned	delete the phrase
+as noted above	delete the phrase
+needless to say	delete the phrase
+at the end of the day	delete the phrase

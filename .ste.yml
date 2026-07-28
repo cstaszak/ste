@@ -1,0 +1,14 @@
+# Configuration for the ste linter in this repository.
+# Every field is optional. See README.md for the full list.
+
+mode: flavored
+max_per_100w: 0.5
+
+# The documentation here must pass the rules the tool enforces.
+rules:
+  em-dash: true
+
+words:
+  banned-word:
+    add:
+      "going forward": "from now on"

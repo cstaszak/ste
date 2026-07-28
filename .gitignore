@@ -1,0 +1,19 @@
+# The ASD-STE100 specification is copyrighted. Never commit it, and never
+# commit anything derived from it (dictionary indexes, extracted text).
+*.pdf
+ASD-STE100*
+/.ste/
+dict-*.json
+ste-dict-*.json
+
+# Build output
+/bin/
+/dist/
+/ste
+
+# Eval output (may contain API responses)
+/results/
+
+# Local settings and OS noise
+.claude/settings.local.json
+.DS_Store

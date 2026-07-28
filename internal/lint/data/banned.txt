@@ -1,0 +1,51 @@
+# Words STE replaces with a shorter, more common word.
+# Format: phrase<TAB>replacement. Lines starting with # are comments.
+# Matching is case-insensitive and matches whole words only.
+
+begin	start
+begins	starts
+began	started
+commence	start
+commences	starts
+initiate	start
+initiates	starts
+originate	come from
+utilize	use
+utilizes	uses
+utilizing	using
+utilization	use
+leverage	use
+leverages	uses
+leveraging	using
+facilitate	help
+facilitates	helps
+ensure	make sure
+ensures	makes sure
+ensuring	making sure
+obtain	get
+obtains	gets
+acquire	get
+acquires	gets
+demonstrate	show
+demonstrates	shows
+additionally	also
+furthermore	also
+moreover	also
+comprehensive	full
+comprehensively	fully
+aforementioned	this
+henceforth	from now on
+therein	in it
+whilst	while
+amongst	among
+numerous	many
+myriad	many
+plethora	many
+prior to	before
+subsequent to	after
+in order to	to
+a variety of	several
+in the event that	if
+due to the fact that	because
+# "it is important to note" belongs to the modal-hedge rule. The Python
+# reference lists it in both, which counts it twice.
