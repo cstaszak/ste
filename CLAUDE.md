@@ -35,6 +35,7 @@ make all        # check and lint
 | `internal/dict` | The approved-word index built from a local copy of the standard |
 | `internal/eval` | The cross-model experiment |
 | `testdata/corpus` | Documents with known scores |
+| `docs/experiment-results.md` | The first-party run of `ste eval` and its analysis |
 | `.claude/skills/ste-writing` | The writing skill for an agent |
 
 ## How the linter works

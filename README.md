@@ -14,7 +14,10 @@ by woosal1337. The video is
 [The cure for AI slop is a 1986 aircraft manual](https://www.youtube.com/watch?v=uJblcC4lKYw).
 
 That project shows the effect with numbers. A model given the STE rules cut its
-violation rate by 74% on Claude and 50% on GPT-5.5. `ste` is a Go rewrite of the
+violation rate by 74% on Claude and 50% on GPT-5.5. This repository repeats the
+test on three current models in
+[docs/experiment-results.md](docs/experiment-results.md), where the STE rules
+cut the rate by 88% to 97%. `ste` is a Go rewrite of the
 Python linter in that kit. It adds locations, configuration, more output formats,
 and a dictionary check.
 
@@ -148,7 +151,9 @@ ste eval --models claude-opus-5 --yes  # run it
 ```
 
 The four conditions are: no system prompt, a list of banned words, Orwell's six
-rules, and the STE rules. The change from the baseline is the result.
+rules, and the STE rules. The change from the baseline is the result. See
+[docs/experiment-results.md](docs/experiment-results.md) for a run and what it
+shows.
 
 The command needs `ANTHROPIC_API_KEY`, or another credential the Anthropic SDK
 accepts. It stops if you set a name close to that one, such as `ANTHROPIC_KEY`.
