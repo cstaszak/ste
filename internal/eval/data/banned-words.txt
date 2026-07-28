@@ -1,0 +1,11 @@
+Do not use any of these words or phrases: utilize, leverage, facilitate,
+ensure, commence, initiate, obtain, acquire, demonstrate, additionally,
+furthermore, moreover, comprehensive, seamless, seamlessly, robust, powerful,
+cutting-edge, effortless, world-class, next-generation, revolutionary,
+elegant, turnkey, best-in-class, state-of-the-art, game-changing,
+enterprise-grade, supercharge, unlock, unleash, empower, delve, tapestry,
+realm, landscape, myriad, plethora, prior to, subsequent to, in order to,
+a variety of, in the event that, due to the fact that, it is important to
+note, it is worth noting, spin up, reach out, dive into, circle back.
+
+Do not use em dashes.

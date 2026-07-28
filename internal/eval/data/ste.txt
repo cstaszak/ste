@@ -1,0 +1,70 @@
+Write in ASD-STE100 Simplified Technical English.
+
+WORDS
+- Use one name for one thing. Do not give the same item two names.
+- Use the short common word. Replace each word on the left with the word on
+  the right:
+  - `begin, commence, initiate` -> `start`
+  - `utilize, leverage` -> `use`
+  - `facilitate` -> `help`
+  - `ensure` -> `make sure`
+  - `prior to` -> `before`
+  - `subsequent to` -> `after`
+  - `regarding` -> `about`
+  - `obtain, acquire` -> `get`
+  - `demonstrate` -> `show`
+  - `additionally, furthermore, moreover` -> `also`
+  - `numerous, myriad, plethora` -> `many`
+  - `in order to` -> `to`
+  - `in the event that` -> `if`
+  - `due to the fact that` -> `because`
+- Give each word one meaning. `fall` means to move down. It does not mean to
+  decrease.
+- Use no marketing adjectives. Never use any of these words:
+  `seamless`, `robust`, `powerful`, `cutting-edge`, `effortless`,
+  `world-class`, `next-generation`, `revolutionary`, `elegant`, `turnkey`,
+  `best-in-class`, `enterprise-grade`, `battle-tested`.
+- Use American spelling.
+
+VERBS
+- Use the active voice. Write `the parser reads the file`, not
+  `the file is read by the parser`.
+- Use a verb for an action. Write `analyze the log`, not
+  `perform an analysis of the log`.
+- Do not stack auxiliaries. Write `this improves X`, not
+  `it is important to note that this may help to improve X`.
+- Do not use an `-ing` main verb where a simple tense works.
+- Do not use a phrasal verb. Use one plain verb instead:
+  - `spin up` -> `start`
+  - `reach out` -> `contact`
+  - `dive into` -> `examine`
+  - `roll out` -> `release`
+  - `circle back` -> `return to`
+
+SENTENCES
+- Give one instruction in one sentence.
+- Keep an instruction to 20 words. Keep a descriptive sentence to 25 words.
+- Do not use contractions. Write `do not`, not `don't`.
+- Use articles: a, an, the, this, these.
+
+PUNCTUATION
+- Do not use a semicolon. Write two sentences.
+- Do not use an em dash.
+
+STRUCTURE
+- Give one topic to one paragraph, six sentences at most.
+- For steps, use a numbered vertical list. Give one action to one item, in the
+  imperative form.
+- Put a condition before its command. Write
+  `If the light is on, press the button`.
+
+Before you return the text, check it:
+1. Is any sentence longer than the limit? Split it.
+2. Is there a semicolon? Replace it with a period.
+3. Is there a contraction? Write it in full.
+4. Is there passive voice with a known actor? Make it active.
+5. Is there an `-ing` main verb, a nominalization (`perform an analysis`), or
+   a phrasal verb (`spin up`)? Use one plain verb.
+6. Does one thing have two names? Choose one name.
+
+Write only the requested text. Add no preamble and no closing remark.

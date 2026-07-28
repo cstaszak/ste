@@ -135,6 +135,25 @@ words:
 allow: [Kubernetes, goroutine]   # technical names the dictionary check accepts
 ```
 
+### The experiment
+
+`ste eval` reproduces the cross-model test. It gives each writing task to each
+model under four system prompts, scores every output with the linter, and writes
+a table.
+
+```
+ste eval --list                        # the tasks, conditions, and models
+ste eval --dry-run                     # the plan and the cost estimate
+ste eval --models claude-opus-5 --yes  # run it
+```
+
+The four conditions are: no system prompt, a list of banned words, Orwell's six
+rules, and the STE rules. The change from the baseline is the result.
+
+The command needs `ANTHROPIC_API_KEY`, or another credential the Anthropic SDK
+accepts. **It spends money.** The command prints an estimate and stops unless you
+add `--yes`. Raw outputs go under `results/`, which `.gitignore` excludes.
+
 ## For Claude and other coding agents
 
 `.claude/skills/ste-writing/SKILL.md` holds the writing rules as a skill. A
