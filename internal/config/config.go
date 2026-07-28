@@ -8,6 +8,7 @@ import (
 	"io"
 	"os"
 	"path/filepath"
+	"strings"
 
 	"gopkg.in/yaml.v3"
 
@@ -120,6 +121,9 @@ func (c *Config) Apply(opt lint.Options) lint.Options {
 	}
 	for id, on := range c.Rules {
 		opt.Enabled[id] = on
+	}
+	for _, w := range c.Allow {
+		opt.Allow[strings.ToLower(w)] = true
 	}
 	for id, w := range c.Words {
 		list := opt.Lists[id]

@@ -20,6 +20,7 @@ Usage:
 Commands:
   lint     Check prose and report violations
   diff     Compare two drafts and report the score change
+  dict     Build and read the ASD-STE100 approved-word index
   rules    List the rules
   version  Print the version
 
@@ -46,6 +47,8 @@ func main() {
 		code = runLint(args)
 	case "diff":
 		code = runDiff(args)
+	case "dict":
+		code = runDict(args)
 	case "rules":
 		code = runRules(args)
 	case "version", "--version", "-v":

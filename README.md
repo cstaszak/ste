@@ -65,6 +65,40 @@ change between the two scores is the signal.
 | `sarif` | For a code scanner. |
 | `agent` | A short form for a coding agent to act on. |
 
+### The dictionary check
+
+ASD-STE100 approves about 900 words for general use. `ste` can check your text
+against that list, but it needs the standard, and the standard is under
+copyright. Get your own copy, then build the index:
+
+```
+ste dict build --pdf ASD-STE100-ISSUE-9.pdf
+ste dict stats
+ste dict lookup utilize commence run
+```
+
+The index goes in your user cache directory, never in the repository. Ask for
+the check with `--dict`:
+
+```
+ste lint --mode=strict --dict runbook.md
+```
+
+Use it for a procedure, a runbook, or an error message. Do not use it for a
+README. General prose needs words that STE does not approve, which is why
+flavored mode leaves the dictionary out.
+
+Two limits are worth knowing:
+
+- The standard permits a **technical name**, and it does not list them. `ste`
+  reads a word as a noun when a determiner comes shortly before it. It then
+  allows a word that the standard rejects for its verb sense only. So "remove
+  the filter" passes and "filter the fuel" does not. This is a guess, not a
+  parser. Put the names your project uses in `allow` in `.ste.yml`.
+- The parser reads a four-column table out of a PDF. Run `ste dict stats` after
+  a build. An approved count near 800 to 900 is right. A count far from that
+  means the parse failed.
+
 ### In a build
 
 ```

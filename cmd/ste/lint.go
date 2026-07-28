@@ -33,6 +33,8 @@ func runLint(args []string) int {
 		quiet    = fset.Bool("quiet", false, "print the summary only")
 		confPath = fset.String("config", "", "path to .ste.yml (default: search up from the file)")
 		noConf   = fset.Bool("no-config", false, "ignore .ste.yml")
+		useDict  = fset.Bool("dict", false, "check words against the STE dictionary (needs \"ste dict build\")")
+		dictPath = fset.String("dict-index", "", "path to the dictionary index")
 	)
 	fset.Usage = func() {
 		fmt.Fprintf(os.Stderr, "Usage: ste lint [flags] [files or directories...]\n\n"+
@@ -76,8 +78,21 @@ func runLint(args []string) int {
 		return fail("%v", err)
 	}
 	opt := cfg.Apply(lint.DefaultOptions(m))
+	if *useDict {
+		ix, _, err := loadIndex(*dictPath)
+		if err != nil {
+			return fail("%v", err)
+		}
+		opt.Dict = ix
+		opt.Enabled["non-approved-word"] = true
+	}
 	if err := applyRuleFlags(&opt, *only, *enable, *disable); err != nil {
 		return fail("%v", err)
+	}
+	// A dictionary rule cannot run without an index.
+	if opt.Dict == nil {
+		opt.Enabled["non-approved-word"] = false
+		opt.Enabled["unknown-word"] = false
 	}
 
 	threshold, hasThreshold := cfg.Threshold()

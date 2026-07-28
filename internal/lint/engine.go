@@ -18,12 +18,23 @@ type Options struct {
 	Lists map[string]*PhraseList
 	// Dict, when set, checks each word against the STE approved dictionary.
 	Dict Approver
+	// Allow holds technical names the dictionary check accepts, in lower case.
+	Allow map[string]bool
 }
 
-// Approver reports whether a word is in the ASD-STE100 approved dictionary.
-// internal/dict provides the implementation.
+// Approver answers questions about the ASD-STE100 dictionary. The package
+// internal/dict provides the implementation. The lint package does not import
+// it, so the lint core stays free of the PDF reader.
 type Approver interface {
-	Approved(word string) bool
+	// IsApproved reports whether the word, or a regular form of it, is an
+	// approved word.
+	IsApproved(word string) bool
+	// Rejected reports whether the standard lists the word and does not
+	// approve it. It returns approved words to use instead, and the parts of
+	// speech the standard rejects the word for.
+	Rejected(word string) (alternatives, partsOfSpeech []string, listed bool)
+	// Known reports whether the standard lists the word at all.
+	Known(word string) bool
 }
 
 // DefaultOptions returns the options for a mode.
@@ -33,6 +44,7 @@ func DefaultOptions(mode Mode) Options {
 		MaxParagraphSentences: 6,
 		Lists:                 map[string]*PhraseList{},
 		Enabled:               map[string]bool{},
+		Allow:                 map[string]bool{},
 	}
 	if mode == ModeStrict {
 		o.MaxSentenceWords = 20
