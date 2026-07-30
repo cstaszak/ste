@@ -6,7 +6,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/cstaszak/ste/internal/dict"
+	"github.com/stazelabs/ste/internal/dict"
 )
 
 const dictUsage = `Usage: ste dict <command> [flags]

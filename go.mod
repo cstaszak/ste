@@ -1,4 +1,4 @@
-module github.com/cstaszak/ste
+module github.com/stazelabs/ste
 
 go 1.26.5
 

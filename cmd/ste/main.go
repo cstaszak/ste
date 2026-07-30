@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/cstaszak/ste/internal/report"
+	"github.com/stazelabs/ste/internal/report"
 )
 
 // version is set at build time with -ldflags.

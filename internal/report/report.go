@@ -8,7 +8,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/cstaszak/ste/internal/lint"
+	"github.com/stazelabs/ste/internal/lint"
 )
 
 // Format names one output style.

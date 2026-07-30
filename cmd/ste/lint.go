@@ -10,9 +10,9 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/cstaszak/ste/internal/config"
-	"github.com/cstaszak/ste/internal/lint"
-	"github.com/cstaszak/ste/internal/report"
+	"github.com/stazelabs/ste/internal/config"
+	"github.com/stazelabs/ste/internal/lint"
+	"github.com/stazelabs/ste/internal/report"
 )
 
 // proseExtensions are the files a directory walk picks up.

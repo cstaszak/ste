@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/cstaszak/ste/internal/lint"
+	"github.com/stazelabs/ste/internal/lint"
 )
 
 func write(t *testing.T, dir, body string) string {

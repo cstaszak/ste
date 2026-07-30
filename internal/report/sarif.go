@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"io"
 
-	"github.com/cstaszak/ste/internal/lint"
+	"github.com/stazelabs/ste/internal/lint"
 )
 
 // Version is set by the build and named in the SARIF output.
@@ -81,7 +81,7 @@ func writeSARIF(w io.Writer, reports []*lint.Report) error {
 	run := sarifRun{
 		Tool: sarifTool{Driver: sarifDriver{
 			Name:           "ste",
-			InformationURI: "https://github.com/cstaszak/ste",
+			InformationURI: "https://github.com/stazelabs/ste",
 			Version:        Version,
 		}},
 		Results: []sarifResult{},

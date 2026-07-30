@@ -9,8 +9,8 @@ import (
 	"path/filepath"
 	"sort"
 
-	"github.com/cstaszak/ste/internal/config"
-	"github.com/cstaszak/ste/internal/lint"
+	"github.com/stazelabs/ste/internal/config"
+	"github.com/stazelabs/ste/internal/lint"
 )
 
 // Delta is the score change between two drafts.

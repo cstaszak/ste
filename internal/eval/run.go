@@ -11,7 +11,7 @@ import (
 
 	"github.com/anthropics/anthropic-sdk-go"
 
-	"github.com/cstaszak/ste/internal/lint"
+	"github.com/stazelabs/ste/internal/lint"
 )
 
 // Model is one model under test, with the price of a million tokens.

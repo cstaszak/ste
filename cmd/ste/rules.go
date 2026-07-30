@@ -6,7 +6,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/cstaszak/ste/internal/lint"
+	"github.com/stazelabs/ste/internal/lint"
 )
 
 func runRules(args []string) int {

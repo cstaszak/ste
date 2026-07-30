@@ -12,7 +12,7 @@ import (
 
 	"github.com/anthropics/anthropic-sdk-go"
 
-	"github.com/cstaszak/ste/internal/eval"
+	"github.com/stazelabs/ste/internal/eval"
 )
 
 func runEval(args []string) int {

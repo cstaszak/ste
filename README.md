@@ -24,7 +24,7 @@ and a dictionary check.
 ## Install
 
 ```
-go install github.com/cstaszak/ste/cmd/ste@latest
+go install github.com/stazelabs/ste/cmd/ste@latest
 ```
 
 Or build from a clone:
